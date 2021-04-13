@@ -23,4 +23,14 @@ class ArticleController extends AbstractController
             'controller_name' => 'ArticleController',
         ]);
     }
+
+    /**
+     * @Route("/article/edit", name="app_homepage_edit")
+     */
+    public function edit(): Response
+    {
+        return $this->render('article/index.html.twig', [
+            'controller_name' => 'ArticleController',
+        ]);
+    }
 }
