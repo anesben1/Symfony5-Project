@@ -22,6 +22,11 @@ class UserFixture extends BaseFixture
             $user = new User();
             $user->setEmail(sprintf('spacebar%d@example.com', $i));         
             $user->setFirstname($this->faker->firstname);
+
+            if($this->faker->boolean()){
+                $user->setTwitterUsername($this->faker->userName);
+            }
+            
             $user->setPassword($this->passwordEncoder->encodePassword(
                 $user,
                 'engage'
