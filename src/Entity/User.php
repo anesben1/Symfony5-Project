@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -20,6 +21,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups("main")
      */
     private $email;
 
@@ -31,6 +33,7 @@ class User implements UserInterface
       
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("main")
      */
     private $firstname;
 
@@ -41,6 +44,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("main")
      */
     private $twitterUsername;
 
@@ -48,7 +52,9 @@ class User implements UserInterface
     {
         return $this->id;
     }
-
+    /**
+     * @Groups("main")
+     */
     public function getEmail(): ?string
     {
         return $this->email;
