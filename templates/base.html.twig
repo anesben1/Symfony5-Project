@@ -53,10 +53,14 @@
                                     </div>
                                 </li>
                 {% else %}
-                <li class="nav-item">
-                            <a style="color: #fff;" class="nav-link" href="{{ path('app_login') }}">Login</a>
-                        </li>
-                    {% endif %}
+                    <li class="nav-item">
+                        <a style="color: #fff;" class="nav-link" href="{{ path('app_login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                         <a style="color: #fff;" class="nav-link" href="{{ path('app_register') }}">Register</a>
+                    </li>
+                {% endif %}
+
                 </ul>
             </div>
         </nav>
