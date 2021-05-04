@@ -17,10 +17,11 @@ class ArticleController extends AbstractController
     /**
      * @Route("/article", name="app_homepage")
      */
-    public function index(): Response
+    public function index(ArticleRepository $articleRepository): Response
     {
-        return $this->render('article/index.html.twig', [
-            'controller_name' => 'ArticleController',
+
+        return $this->render('article/homepage.html.twig', [
+            'articles' => $articleRepository->findAll(),
         ]);
     }
 
@@ -29,8 +30,10 @@ class ArticleController extends AbstractController
      */
     public function edit(): Response
     {
-        return $this->render('article/index.html.twig', [
+        return $this->render('article/homepage.html.twig', [
             'controller_name' => 'ArticleController',
         ]);
     }
+
+    
 }

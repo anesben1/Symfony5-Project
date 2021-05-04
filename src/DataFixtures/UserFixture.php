@@ -56,4 +56,5 @@ class UserFixture extends BaseFixture
 
         $manager->flush();
     }
+    
 }
