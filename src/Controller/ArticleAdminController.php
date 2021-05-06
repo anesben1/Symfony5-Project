@@ -24,21 +24,17 @@ class ArticleAdminController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
-            $data = $form->getData();
-            $article = new Article();
-            dd($data);
-            
-            $article->setTitle($data['title']);
-            $article->setContent($data['content']);
+            /** @var Article $article */
+            $article = $form->getData();
+           
+          
             $article->setAuthor($this->getUser());
 
             $em->persist($article);
             $em->flush();
 
-            $this->addFlash('success', 'Article created ! kmowledge is power!');
-
             return $this->redirectToRoute('app_homepage');
-            
+            $this->addFlash('success', 'Article created ! kmowledge is power!');
 
         }
 
