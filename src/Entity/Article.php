@@ -78,6 +78,11 @@ class Article
         $this->tags = new ArrayCollection();
     }
 
+    public function isPublished(): bool
+    {
+        return $this->publishedAt !== null;
+    }
+
     public function getId()
     {
         return $this->id;
