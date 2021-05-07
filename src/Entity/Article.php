@@ -9,6 +9,8 @@ use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
@@ -26,6 +28,7 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message = "Get creative and think of a title!")
      */
     private $title;
 
@@ -76,6 +79,19 @@ class Article
     {
         $this->comments = new ArrayCollection();
         $this->tags = new ArrayCollection();
+    }
+
+    /**
+     * @Assert\Callback
+     */
+    public function validate(ExecutionContextInterface $context, $playload)
+    {
+        if (stripos($this->getTitle(), 'the borg') !== false) {
+            $context->buildViolation('Um.. the Borg kinda makes us nervous')
+                ->atPath('title')
+                ->addViolation();
+        }
+
     }
 
     public function isPublished(): bool
