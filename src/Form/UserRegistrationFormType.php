@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\IsTrue;
 
 class UserRegistrationFormType extends AbstractType
 {
@@ -30,7 +31,16 @@ class UserRegistrationFormType extends AbstractType
                 ]
             
             ])
-            ->add('agreeTerms', CheckboxType::class)
+            ->add('agreeTerms', CheckboxType::class,[
+                'mapped' => false,
+                'constraints' => [
+                    new IsTrue([
+                        'message' => 'I know it is silly, but you must agree to our terms !'
+                    ])
+                ]
+            ]
+            
+            )
             ;
             
         

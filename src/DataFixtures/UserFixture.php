@@ -32,6 +32,7 @@ class UserFixture extends BaseFixture
                 $user,
                 'engage'
             ));
+            $user->agreeTerms();
 
             $apiToken1 = new ApiToken($user);
             $apiToken2 = new ApiToken($user);
@@ -50,6 +51,7 @@ class UserFixture extends BaseFixture
                 $user,
                 'engage'
             ));
+            $user->agreeTerms();
 
             return $user;
         });
