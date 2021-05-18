@@ -7,12 +7,16 @@
     {%- if help is not empty -%}
         {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
     {%- endif -%}
-    <div>
+    {{ form_label( form, null, {
+      label_attr : { class:'sr-only' }
+    }) }}
+
+       <div>
         {{- form_label(form) -}}
         {{- form_errors(form) -}}
         {{- form_widget(form, widget_attr) -}}
         {{- form_help(form) -}}
-    </div>
+            </div>
 {% endblock %}
 
 
@@ -24,6 +28,8 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 {% endblock %}
 
+
+
 {% block body %}
 <div class="container">
     <div class="row">
@@ -31,7 +37,14 @@
           {{ form_start(registrationForm,{
             'attr' : {'class' : 'form-signin'}
           }) }}
-            {{ form_widget(registrationForm) }}
+            <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+                {{ form_row(registrationForm.email, {
+                    attr: { placeholder: 'Email' }
+                }) }}
+                {{ form_row(registrationForm.plainPassword, {
+                    attr: { placeholder: 'Password' }
+                }) }}
+                {{ form_row(registrationForm.agreeTerms) }}
 
             <button class="btn btn-lg btn-primary btn-block" type="submit">
             Register
