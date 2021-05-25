@@ -13,16 +13,21 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class UserSelectTextType extends AbstractType
 {
     private $userRepository;
+    
 
     public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository; 
+      
         
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addModelTransformer(new EmailToUserTransformer($this->userRepository));
+        $builder->addModelTransformer(new EmailToUserTransformer(
+            $this->userRepository,
+            $options['finder_callback']
+        ));
     }
 
     public function getParent()
@@ -33,7 +38,10 @@ class UserSelectTextType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'invalid_message' => ' Hmm, user not found!' , 
+            'invalid_message' => ' Hmm, user not found!' ,
+            'finder_callback' => function(UserRepository $userRepository, string $email){
+                return $userRepository->findOneBy(['email' => $email]);
+            } 
         ]);
         
     }
