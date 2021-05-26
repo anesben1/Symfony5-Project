@@ -18,7 +18,7 @@ class ArticleAdminController extends AbstractController
      * @Route("/admin/article/new", name="admin_article_new")
      * @IsGranted("ROLE_ADMIN_ARTICLE")
      */
-    public function new(EntityManagerInterface $em, Request $request)
+public function new(EntityManagerInterface $em, Request $request)
     {
         $form = $this->createForm(ArticleFormType::class);
 
@@ -48,7 +48,7 @@ class ArticleAdminController extends AbstractController
      * @Route("/admin/article/{id}/edit", name="admin_article_edit")
      * @IsGranted("MANAGE", subject="article")
      */
-    public function edit(Article $article, Request $request, EntityManagerInterface $em)
+public function edit(Article $article, Request $request, EntityManagerInterface $em)
     {
         
         
@@ -84,7 +84,7 @@ class ArticleAdminController extends AbstractController
     /**
      * @Route("/admin/article" , name="admin_article_list")
      */
-    public function list (ArticleRepository $articleRepo)
+public function list (ArticleRepository $articleRepo)
     {
         $articles = $articleRepo->findAll();
 
