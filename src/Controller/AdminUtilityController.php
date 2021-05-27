@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\Request;
 
 class AdminUtilityController extends AbstractController
 {
@@ -21,12 +22,12 @@ class AdminUtilityController extends AbstractController
     }
 
     /**
-     * @Route("/admin/utility/users", methods="GET")
+     * @Route("/admin/utility/users", methods="GET", name="admin_utility_users")
      * @IsGranted("ROLE_ADMIN_ARTICLE")
      */
-    public function getUSerApi(UserRepository $userRepository)
+    public function getUSerApi(UserRepository $userRepository, Request $request)
     {
-        $users = $userRepository->findAllEmailAlphabetical();
+        $users = $userRepository->findAllMatching($request->query->get('query'));
         return $this->json([
             'users' => $users
         ], 200, [], ['groups' => ['main']]);
