@@ -29,17 +29,17 @@ public function buildForm(FormBuilderInterface $builder, array $options)
 {
 
     $builder
-    ->add('title', TextareaType::class , [
-        'help' => 'choose something catchy!'
-    ])
-    
-    ->add('content')
+        ->add('title', TextareaType::class , [
+            'help' => 'choose something catchy!'
+        ])
+        
+        ->add('content' )
 
-    ->add('publishedAt', null, [
-        'widget' => 'single_text'
-    ])
-     ->add('author', UserSelectTextType :: class)
-        ;
+        ->add('publishedAt', null, [
+            'widget' => 'single_text'
+        ])
+        ->add('author', UserSelectTextType :: class)
+            ;
 
     
 
