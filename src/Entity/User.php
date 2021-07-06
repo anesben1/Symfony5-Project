@@ -63,7 +63,7 @@ class User implements UserInterface
     private $twitterUsername;
 
     /**
-     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="author", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="author", orphanRemoval=true, fetch="EXTRA_LAZY")
      */
     private $articles;
 
